@@ -33,7 +33,7 @@ Proje, **ilaç prospektüslerindeki uzun, karmaşık metinleri herkesin anlayabi
 - **Eczacılar:** Reçete edilen ilaç kombinasyonlarının risklerini gözden geçirmek isteyen sağlık profesyonelleri.r
 
 
-##Product Backlog URL: https://miro.com/app/board/uXjVIhUYa5M=/
+## Product Backlog URL: https://miro.com/app/board/uXjVIhUYa5M=/
 
 <details>
   <summary>📂 Sprint 1</summary>
