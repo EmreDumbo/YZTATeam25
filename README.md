@@ -43,16 +43,6 @@ Proje, **ilaç prospektüslerindeki uzun, karmaşık metinleri herkesin anlayabi
 > **Sprint Tarihleri:** 20 Haziran 2025 – 6 Temmuz 2025  
 > **Toplam Puan:** 100
 
- Sprint 1 Hedefleri
-✅ Proje vizyonu netleştirimesi
-
-✅ Persona ve kullanıcı akışları hazırlanması
-
-✅ Kullanılacak veri kaynakları belirlenmesi
-
-✅ AI mimarisi ve teknik mimari tasarlanması
-
-✅ Proje yönetimi ve wireframe başlatılması
 
 # Sprint 1 Burndown Chart
 ![PharmAI Sprint 1 Burndown Chart_ (1)](https://github.com/user-attachments/assets/abeb731b-2fbb-4e60-a6d0-14c35e67d62e)
@@ -66,13 +56,13 @@ Her günkü Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne plan
 | Tarih       | Kim           | Yapılan                                                                                                      | Plan (Bugün)                                            | Bloklayıcılar                                             |
 |-------------|---------------|---------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------------|
 | 26.06.2025  | Beyzanur (PO) | - Proje vizyon cümlesini Miro’ya ekledi<br>- Persona kartlarını güncelledi                                     | - Login & Dashboard wireframe eskizlerine başlayacak    | Figma “Wireframe Library” izni bekliyor                   |
-| 26.06.2025  | Emre (SM)     | - Backlog/In-Progress/Done sütunlarını açtı<br>- User story’lere puan ve öncelik atadı                         | - Wireframe açıklamalarını sticky-note olarak ekleyecek | Wireframe eskizleri gelinceye kadar bekliyor              |
+| 26.06.2025  | Emre (DEV)     | - Backlog/In-Progress/Done sütunlarını açtı<br>- User story’lere puan ve öncelik atadı                         | - Wireframe açıklamalarını sticky-note olarak ekleyecek | Wireframe eskizleri gelinceye kadar bekliyor              |
 | 26.06.2025  | Hatice (AI)   | - DrugBank, SIDER, DailyMed veri notlarını ekledi<br>- AI mimarisi taslağını hazırladı                         | - Gemini vs. GPT prompt örneklerini karşılaştıracak     | GPT API anahtarı hâlâ gelmedi                             |
 | 27.06.2025  | Beyzanur (PO) | - Wireframe eskizlerini tamamladı<br>- Kullanıcı akışlarını Miro’ya işledi                                    | - Dashboard mockup’u Figma’ya yükleyecek                | Figma plugin izni hâlâ bekleniyor                         |
-| 27.06.2025  | Emre (SM)     | - Sprint board’u gözden geçirdi<br>- Story point dağılımını güncelledi                                         | - Sprint Review sunum taslağını oluşturacak             | API anahtarı alınana kadar test yapılamıyor               |
+| 27.06.2025  | Emre (DEV)     | - Sprint board’u gözden geçirdi<br>- Story point dağılımını güncelledi                                         | - Sprint Review sunum taslağını oluşturacak             | API anahtarı alınana kadar test yapılamıyor               |
 | 27.06.2025  | Hatice (AI)   | - Prompt mühendisliği üzerinde çalıştı<br>- JSON çıktı örneklerini test etti                                  | - Etkileşim kontrol kural setini hazırlayacak            | DailyMed erişiminde kimlik doğrulama sorunu var           |
 | 28.06.2025  | Beyzanur (PO) | - Dashboard wireframe’ini gözden geçirdi<br>- Persona geri bildirimlerini topladı                              | - Prospektüs özetleme akışını tanımlayacak              | Takım üyelerinden retroları almak için zaman ayıracak     |
-| 28.06.2025  | Emre (SM)     | - Daily Scrum süresini 15 dakikaya düşürdü<br>- Burndown chart’ı güncelledi                                   | - Sprint Retrospective notlarını hazırlayacak           | Bazı kullanıcı akışları hâlâ net değil                    |
+| 28.06.2025  | Emre (DEV)     | - Daily Scrum süresini 15 dakikaya düşürdü<br>- Burndown chart’ı güncelledi                                   | - Sprint Retrospective notlarını hazırlayacak           | Bazı kullanıcı akışları hâlâ net değil                    |
 | 28.06.2025  | Hatice (AI)   | - Kural tabanlı etkileşim kontrolünü kodlamaya başladı<br>- İlk testleri yaptırdı                             | - İlk test sonuçlarına göre prompt ayarlamalarını yapacak | Gemini API kota limiti yaklaşıyor                         |
 
 ---
@@ -110,7 +100,7 @@ Her günkü Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne plan
 *Time:* 09:30  
 *Attendees:*  
 - Beyzanur (PO)  
-- Emre Dumbo (SM)  
+- Emre Dumbo (DEV)  
 - Hatice (AI/Backend)
 
 ---
@@ -119,7 +109,7 @@ Her günkü Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne plan
 - *Beyzanur (PO):*  
   - Proje vizyon cümlesini Miro’ya ekledim  
   - Persona kartlarının başlık ve ihtiyaçlarını tanımladım  
-- *Emre Dumbo (SM):*  
+- *Emre Dumbo (DEV):*  
   - Miro’da Backlog/In Progress/Done çerçevelerini oluşturdum  
   - İşlere puan ve öncelik atadım  
 - *Hatice (AI/Backend):*  
@@ -128,12 +118,12 @@ Her günkü Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne plan
 
 ### 2. Bugün
 - *Beyzanur (PO):* Login & Dashboard wireframe eskizlerini çizmeye başlayacağım  
-- *Emre Dumbo (SM):* Wireframe’lere “ne iş yapıyor” açıklamalarını sticky note olarak ekleyeceğim  
+- *Emre Dumbo (DEV):* Wireframe’lere “ne iş yapıyor” açıklamalarını sticky note olarak ekleyeceğim  
 - *Hatice (AI/Backend):* Gemini vs. GPT prompt örneklerini karşılaştırmalı olarak hazırlayacağım  
 
 ### 3. Blockers  
 - *Beyzanur (PO):* Figma’da “Wireframe Library” plugin izni bekliyorum  
-- *Emre Dumbo (SM):* Beyzanur’dan wireframe eskizleri gelinceye kadar ilerleyemiyorum  
+- *Emre Dumbo (DEV):* Beyzanur’dan wireframe eskizleri gelinceye kadar ilerleyemiyorum  
 - *Hatice (AI/Backend):* GPT API anahtarı gelene kadar örnek deneme yapamıyorum
 
 
