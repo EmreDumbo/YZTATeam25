@@ -43,6 +43,11 @@ Proje, **ilaç prospektüslerindeki uzun, karmaşık metinleri herkesin anlayabi
 > **Sprint Tarihleri:** 20 Haziran 2025 – 6 Temmuz 2025  
 > **Toplam Puan:** 100
 
+## Kanban Framework
+
+![Kanban Board – Backlog, In Progress, Done](/mnt/data/WhatsApp Image 2025-07-06 at 23.01.02 (1).jpeg)
+
+![Kanban Board – In Progress & Done](/mnt/data/WhatsApp Image 2025-07-06 at 23.01.02.jpeg)
 
 # Sprint 1 Burndown Chart
 ![PharmAI Sprint 1 Burndown Chart_ (1)](https://github.com/user-attachments/assets/abeb731b-2fbb-4e60-a6d0-14c35e67d62e)
