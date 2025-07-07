@@ -43,11 +43,10 @@ Proje, **ilaç prospektüslerindeki uzun, karmaşık metinleri herkesin anlayabi
 > **Sprint Tarihleri:** 20 Haziran 2025 – 6 Temmuz 2025  
 > **Toplam Puan:** 100
 
-## Kanban Framework
+## Task Tracking
+![WhatsApp Image 2025-07-06 at 23 00 35 (1)](https://github.com/user-attachments/assets/ff0be2bd-96a2-41c2-830d-6d33a04d97b7)
 
-![Kanban Board – Backlog, In Progress, Done](/mnt/data/WhatsApp Image 2025-07-06 at 23.01.02 (1).jpeg)
-
-![Kanban Board – In Progress & Done](/mnt/data/WhatsApp Image 2025-07-06 at 23.01.02.jpeg)
+![WhatsApp Image 2025-07-06 at 23 01 02 (1)](https://github.com/user-attachments/assets/89735b5c-5549-4003-b74c-3e7b98f6fbdf)
 
 # Sprint 1 Burndown Chart
 ![PharmAI Sprint 1 Burndown Chart_ (1)](https://github.com/user-attachments/assets/abeb731b-2fbb-4e60-a6d0-14c35e67d62e)
@@ -98,7 +97,7 @@ Her günkü Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne plan
    – 100 puanlık toplam hedef, sprint süresine ve kaynaklarımıza uygun ve gerçekçi.  
 
 
-#Sprint Daily Scrum 
+# Sprint Daily Scrum 
 
 ## Daily Scrum – 26.06.2025
 
