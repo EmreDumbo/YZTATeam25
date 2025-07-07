@@ -57,6 +57,52 @@ Proje, **ilaç prospektüslerindeki uzun, karmaşık metinleri herkesin anlayabi
 # Sprint 1 Burndown Chart
 ![PharmAI Sprint 1 Burndown Chart_ (1)](https://github.com/user-attachments/assets/abeb731b-2fbb-4e60-a6d0-14c35e67d62e)
 
+# Sprint 1 Raporu
+
+## 1. Sprint Notları
+
+Her günkü Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne planlandı)
+
+| Tarih       | Kim           | Yapılan                                                                                                      | Plan (Bugün)                                            | Bloklayıcılar                                             |
+|-------------|---------------|---------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------------------------|
+| 26.06.2025  | Beyzanur (PO) | - Proje vizyon cümlesini Miro’ya ekledi<br>- Persona kartlarını güncelledi                                     | - Login & Dashboard wireframe eskizlerine başlayacak    | Figma “Wireframe Library” izni bekliyor                   |
+| 26.06.2025  | Emre (SM)     | - Backlog/In-Progress/Done sütunlarını açtı<br>- User story’lere puan ve öncelik atadı                         | - Wireframe açıklamalarını sticky-note olarak ekleyecek | Wireframe eskizleri gelinceye kadar bekliyor              |
+| 26.06.2025  | Hatice (AI)   | - DrugBank, SIDER, DailyMed veri notlarını ekledi<br>- AI mimarisi taslağını hazırladı                         | - Gemini vs. GPT prompt örneklerini karşılaştıracak     | GPT API anahtarı hâlâ gelmedi                             |
+| 27.06.2025  | Beyzanur (PO) | - Wireframe eskizlerini tamamladı<br>- Kullanıcı akışlarını Miro’ya işledi                                    | - Dashboard mockup’u Figma’ya yükleyecek                | Figma plugin izni hâlâ bekleniyor                         |
+| 27.06.2025  | Emre (SM)     | - Sprint board’u gözden geçirdi<br>- Story point dağılımını güncelledi                                         | - Sprint Review sunum taslağını oluşturacak             | API anahtarı alınana kadar test yapılamıyor               |
+| 27.06.2025  | Hatice (AI)   | - Prompt mühendisliği üzerinde çalıştı<br>- JSON çıktı örneklerini test etti                                  | - Etkileşim kontrol kural setini hazırlayacak            | DailyMed erişiminde kimlik doğrulama sorunu var           |
+| 28.06.2025  | Beyzanur (PO) | - Dashboard wireframe’ini gözden geçirdi<br>- Persona geri bildirimlerini topladı                              | - Prospektüs özetleme akışını tanımlayacak              | Takım üyelerinden retroları almak için zaman ayıracak     |
+| 28.06.2025  | Emre (SM)     | - Daily Scrum süresini 15 dakikaya düşürdü<br>- Burndown chart’ı güncelledi                                   | - Sprint Retrospective notlarını hazırlayacak           | Bazı kullanıcı akışları hâlâ net değil                    |
+| 28.06.2025  | Hatice (AI)   | - Kural tabanlı etkileşim kontrolünü kodlamaya başladı<br>- İlk testleri yaptırdı                             | - İlk test sonuçlarına göre prompt ayarlamalarını yapacak | Gemini API kota limiti yaklaşıyor                         |
+
+---
+
+## 2. Tahmin Edilen Tamamlanacak Puan & Tahmin Mantığı
+
+🏷️ **Toplam Hedef: 100 Story Point**
+
+| User Story No | Açıklama                                            | Puan |
+|---------------|-----------------------------------------------------|-----:|
+| 1             | Proje konsepti ve vizyon netleştirme                |   10 |
+| 2             | Persona çalışması & kullanıcı akışları              |   15 |
+| 3             | Veri kaynaklarının belirlenmesi                     |   15 |
+| 4             | AI & teknik mimarinin tasarımı                      |   20 |
+| 5             | Proje yönetimi & wireframe başlatma                 |   40 |
+| **Toplam**    |                                                     | **100** |
+
+### Tahmin Mantığı
+
+1. **Story Point Dağılımı**  
+   – Her bir user story, karmaşıklığına ve iş yüküne göre 5–40 arası puanla değerlendirildi.  
+2. **Ekip Kapasitesi**  
+   – Önceki deneme sprintlerimizde (pilot sprint) ortalama **80 puan** tamamladık.  
+   – Bu kez ekstra prototipleme işimiz de olduğu için %25 ek kapasite (80×1.25≈100) planladık.  
+3. **Risk & Buffer**  
+   – Döviz, API anahtarı vb. dış faktörlerden kaynaklı gecikmelere karşı **%10** yedek (“spike”) puan ayırdık.  
+4. **Sonuç**  
+   – 100 puanlık toplam hedef, sprint süresine ve kaynaklarımıza uygun ve gerçekçi.  
+
+
 #Sprint Daily Scrum 
 
 ## Daily Scrum – 26.06.2025
