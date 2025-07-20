@@ -216,6 +216,15 @@ PharmAI, hastaların ve sağlık profesyonellerinin kullandığı ilaçlar aras�
 > **Sprint Tarihleri:** 07 Temmuz 2025 – 20 Temmuz 2025  
 > **Toplam Puan:** 100
 
+## Task Tracking
+
+**20 Temmuz 2025 -  Task Tracking Son Hali**
+
+<img width="1167" height="1338" alt="image" src="https://github.com/user-attachments/assets/b126b6c3-8f30-4aba-87fe-5a321a7271d5" />
+
+
+ ### Tahmin Edilen Tamamlanacak Puan & Tahmin Mantığı
+
 | Görev Başlığı | Puan |
 | --- | --- |
 | Kullanıcı Girişi ve Kullanıcı Database | 15 |
@@ -261,7 +270,7 @@ Sprint sonunda kalan işler büyük ölçüde bitirilmiş, 20 Temmuz'da tüm iş
 
 → RxNav ve [ilacprospektusu.com](http://ilacprospektusu.com/) gibi kaynaklar üzerinden scraping/API ile bilgi alma stratejileri araştırılmıştır.
 
-### Her günkü Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne planlandı) aşağıdaki excel dosyasında bulunmaktadır.
+### Gerçekleştirilen Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne planlandı) aşağıdaki excel dosyasında bulunmaktadır.
 
 [Sprint2_Daily_Scrum.xlsx](https://github.com/user-attachments/files/21337422/Sprint2_Daily_Scrum.xlsx)
 
