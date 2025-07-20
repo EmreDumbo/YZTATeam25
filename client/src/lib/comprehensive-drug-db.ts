@@ -240,62 +240,95 @@ export const COMPREHENSIVE_DRUG_DATABASE = {
   "ibuprofen": {
     "name": "Ibuprofen",
     "genericName": "ibuprofen",
-    "brandNames": [],
-    "category": "Medication",
+    "brandNames": ["Advil", "Motrin", "Nuprin"],
+    "category": "NSAID",
     "dosage": {
-      "adult": "Consult prescribing information",
-      "pediatric": "Consult pediatric guidelines",
-      "elderly": "Consider dose reduction",
-      "renal": "Monitor with renal impairment",
-      "hepatic": "Use caution with hepatic impairment"
+      "adult": "200-800mg every 6-8 hours, maximum 3200mg/day",
+      "pediatric": "5-10mg/kg every 6-8 hours",
+      "elderly": "Use lowest effective dose",
+      "renal": "Avoid in severe renal impairment",
+      "hepatic": "Use with caution in liver disease"
     },
     "indications": [
-      "See prescribing information"
+      "Pain relief",
+      "Fever reduction", 
+      "Inflammation",
+      "Arthritis"
     ],
     "contraindications": [
-      "Known hypersensitivity"
+      "Known hypersensitivity to NSAIDs",
+      "Active peptic ulcer disease",
+      "Severe heart failure",
+      "Third trimester of pregnancy"
     ],
     "sideEffects": [
-      "Monitor for adverse effects"
+      "Stomach upset",
+      "Nausea",
+      "Heartburn",
+      "Dizziness",
+      "Increased bleeding risk"
     ],
     "interactions": [
-      "Check drug interaction databases"
+      "Warfarin (increased bleeding risk)",
+      "Lithium (increased lithium levels)",
+      "ACE inhibitors (reduced effectiveness)",
+      "Aspirin (increased GI bleeding)"
     ],
     "warnings": [
-      "Follow prescribing guidelines"
+      "May increase risk of heart attack or stroke",
+      "Can cause stomach bleeding",
+      "Avoid alcohol use",
+      "Take with food to reduce stomach upset"
     ],
-    "pregnancyCategory": "Consult prescribing information",
-    "controlledSubstance": "Check DEA classification"
+    "pregnancyCategory": "C",
+    "controlledSubstance": "None"
   },
   "aspirin": {
     "name": "Aspirin",
     "genericName": "aspirin",
-    "brandNames": [],
-    "category": "Medication",
+    "brandNames": ["Bayer", "Bufferin", "Ecotrin"],
+    "category": "NSAID/Antiplatelet",
     "dosage": {
-      "adult": "Consult prescribing information",
-      "pediatric": "Consult pediatric guidelines",
-      "elderly": "Consider dose reduction",
-      "renal": "Monitor with renal impairment",
-      "hepatic": "Use caution with hepatic impairment"
+      "adult": "325-650mg every 4 hours for pain, 81mg daily for cardioprotection",
+      "pediatric": "Avoid in children under 16 due to Reye's syndrome risk",
+      "elderly": "Use lower doses, monitor for bleeding",
+      "renal": "Adjust dose in renal impairment",
+      "hepatic": "Use with caution"
     },
     "indications": [
-      "See prescribing information"
+      "Pain relief",
+      "Fever reduction",
+      "Heart attack prevention",
+      "Stroke prevention",
+      "Anti-inflammatory"
     ],
     "contraindications": [
+      "Children under 16 with viral infections",
+      "Active bleeding",
+      "Severe liver disease",
       "Known hypersensitivity"
     ],
     "sideEffects": [
-      "Monitor for adverse effects"
+      "Stomach irritation",
+      "Increased bleeding",
+      "Tinnitus (ringing in ears)",
+      "Nausea",
+      "Allergic reactions"
     ],
     "interactions": [
-      "Check drug interaction databases"
+      "Warfarin (major bleeding risk)",
+      "Methotrexate (increased toxicity)",
+      "ACE inhibitors (reduced effectiveness)",
+      "Alcohol (increased GI bleeding)"
     ],
     "warnings": [
-      "Follow prescribing guidelines"
+      "Risk of Reye's syndrome in children",
+      "Increased bleeding risk",
+      "Can cause stomach ulcers",
+      "Monitor for signs of bleeding"
     ],
-    "pregnancyCategory": "Consult prescribing information",
-    "controlledSubstance": "Check DEA classification"
+    "pregnancyCategory": "D",
+    "controlledSubstance": "None"
   },
   "naproxen": {
     "name": "Naproxen",
