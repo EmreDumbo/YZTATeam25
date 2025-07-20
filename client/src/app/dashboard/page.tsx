@@ -14,6 +14,7 @@ interface User {
 export default function ChatPage() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
+  const [isArcBrowser, setIsArcBrowser] = useState(false);
 
   useEffect(() => {
     // Check if user is authenticated
@@ -26,6 +27,13 @@ export default function ChatPage() {
     }
     
     setUser(JSON.parse(userData));
+
+    // Detect Arc browser
+    const userAgent = navigator.userAgent;
+    const isChrome = userAgent.includes('Chrome');
+    const isArc = userAgent.includes('Arc') || userAgent.includes('Company') || 
+                  (isChrome && !userAgent.includes('Safari/') && !userAgent.includes('Edge'));
+    setIsArcBrowser(isArc);
   }, [router]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
@@ -83,25 +91,25 @@ export default function ChatPage() {
       <div className="pill7 opacity-20"></div>
       <div className="pill8 opacity-30"></div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 py-6">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 py-6">
         {!isStarted ? (
-          <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-8">
+          <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-6 pb-40">
             <div className="relative">
-              <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-emerald-500/25">
+              <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-emerald-500/25 hover:shadow-3xl hover:shadow-emerald-500/40 hover:scale-105 transition-all duration-300">
                 <span className="text-3xl">🔬</span>
               </div>
               <div className="absolute -inset-1 bg-gradient-to-br from-emerald-400 to-cyan-600 rounded-3xl blur opacity-30 animate-pulse"></div>
             </div>
 
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">
                 PharmAI
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl">
                 Your comprehensive pharmacy assistant with access to <span className="font-bold text-emerald-600">100+ medications</span> from FDA databases. Get instant answers on drug interactions, dosages, and clinical guidelines.
               </p>
               
-              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 max-w-3xl">
+              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 max-w-3xl hover:bg-emerald-100 hover:border-emerald-300 transition-all duration-300">
                 <div className="text-sm text-emerald-800">
                   <div className="font-semibold mb-2">🗄️ Comprehensive Database Includes:</div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
@@ -118,7 +126,7 @@ export default function ChatPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12 w-full max-w-4xl">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mt-8 w-full max-w-4xl">
               {quickActions.map((action, i) => (
                 <button
                   key={i}
@@ -126,9 +134,9 @@ export default function ChatPage() {
                     setInput(action.query);
                     setTimeout(() => sendMessage(), 100);
                   }}
-                  className="group p-6 bg-white/70 backdrop-blur-sm rounded-2xl border border-emerald-100 hover:border-emerald-300 hover:bg-white/90 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-1"
+                  className="group p-5 bg-white/70 backdrop-blur-sm rounded-2xl border border-emerald-100 hover:border-emerald-300 hover:bg-white/90 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/10 hover:-translate-y-2 hover:scale-105"
                 >
-                  <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-2xl mb-3 group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300">
                     {action.icon}
                   </div>
                   <div className="text-sm font-medium text-gray-800 group-hover:text-emerald-700 transition-colors">
@@ -138,14 +146,14 @@ export default function ChatPage() {
               ))}
             </div>
 
-            <div className="mt-8 text-center">
+            <div className="mt-6 text-center">
               <div className="text-sm text-gray-500 mb-2">Try asking about specific medications:</div>
               <div className="flex flex-wrap justify-center gap-2">
                 {['Metformin', 'Lisinopril', 'Atorvastatin', 'Sertraline', 'Albuterol', 'Omeprazole'].map((drug) => (
                   <button
                     key={drug}
                     onClick={() => setInput(`Tell me about ${drug} - dosage, uses, and side effects`)}
-                    className="px-3 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 rounded-full text-xs transition-colors"
+                    className="px-3 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 rounded-full text-xs transition-all duration-200 hover:scale-110 hover:shadow-md"
                   >
                     {drug}
                   </button>
@@ -153,21 +161,21 @@ export default function ChatPage() {
               </div>
             </div>
           </div>
-        ) : (
-          <div className="space-y-6 pt-8">
+        ) :
+          <div className="space-y-6 pt-8 pb-32">
             <div className="flex justify-between items-center mb-8">
-              <div className="inline-flex items-center space-x-3 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-emerald-200/50">
-                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
+              <div className="inline-flex items-center space-x-3 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-emerald-200/50 hover:bg-white/80 hover:border-emerald-300/70 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10">
+                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
                   <span className="text-white text-sm">🔬</span>
                 </div>
                 <span className="text-emerald-700 font-medium">PharmAI Assistant</span>
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-xs text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full">100+ Drugs</span>
+                <span className="text-xs text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full hover:bg-emerald-200 transition-colors duration-200">100+ Drugs</span>
               </div>
 
               <div className="flex items-center space-x-3">
                 {user && (
-                  <span className="text-sm text-emerald-700">
+                  <span className="text-sm text-emerald-700 bg-emerald-50 px-3 py-2 rounded-full border border-emerald-200 hover:bg-emerald-100 hover:border-emerald-300 transition-all duration-200">
                     Hoş geldin, {user.firstName}!
                   </span>
                 )}
@@ -177,7 +185,7 @@ export default function ChatPage() {
                     localStorage.removeItem('user');
                     router.push('/');
                   }}
-                  className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-full text-sm transition-colors"
+                  className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-full text-sm transition-all duration-200 hover:shadow-md hover:scale-105"
                 >
                   Çıkış Yap
                 </button>
@@ -229,12 +237,13 @@ export default function ChatPage() {
               <div ref={endRef} />
             </div>
           </div>
-        )}
+        }
 
-        <div className={`${isStarted ? 'fixed' : 'relative'} ${isStarted ? 'bottom-0 left-0 right-0' : ''} bg-white/80 backdrop-blur-md border-t border-gray-200/50 p-4`}>
-          <div className="max-w-4xl mx-auto">
+        {/* Fixed positioned chat bar that's always visible */}
+        <div className={isArcBrowser ? "arc-chat-fix" : "fixed-chat-bar"}>
+          <div className="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl shadow-emerald-500/20 border border-emerald-200/50 p-4">
             <div className="relative">
-              <div className="flex items-end space-x-4 bg-white rounded-3xl shadow-xl shadow-gray-500/10 border border-gray-200/50 p-2">
+              <div className="flex items-end space-x-4 bg-white rounded-3xl shadow-xl shadow-gray-500/10 border border-gray-200/50 p-2 hover:shadow-2xl hover:shadow-emerald-500/20 transition-all duration-300 chat-input-container">
                 <div className="flex-1 min-h-[52px] max-h-32">
                   <textarea
                     value={input}
@@ -265,10 +274,10 @@ export default function ChatPage() {
                 <button
                   onClick={sendMessage}
                   disabled={loading || !input.trim()}
-                  className={`p-3 rounded-2xl transition-all duration-200 ${
+                  className={`p-3 rounded-2xl transition-all duration-300 transform ${
                     loading || !input.trim()
                       ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/40'
+                      : 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700 shadow-lg shadow-emerald-500/25 hover:shadow-xl hover:shadow-emerald-500/40 hover:scale-110 hover:-translate-y-1'
                   }`}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,7 +292,7 @@ export default function ChatPage() {
                     <button
                       key={i}
                       onClick={() => setInput(action.query)}
-                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs rounded-full transition-colors duration-200 border border-emerald-200"
+                      className="inline-flex items-center space-x-1 px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs rounded-full transition-all duration-200 border border-emerald-200 hover:border-emerald-300 hover:scale-105 hover:shadow-md"
                     >
                       <span>{action.icon}</span>
                       <span>{action.text}</span>
