@@ -20,10 +20,29 @@ export default function LoginPage() {
       
       <form
         className="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-2xl w-full max-w-md space-y-6 border border-emerald-100 relative z-10"
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
-          console.log("login stub", {email, password});
-          router.push("/dashboard");
+          try {
+            const response = await fetch('http://localhost:4000/api/auth/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ email, password }),
+            });
+
+            if (response.ok) {
+              const data = await response.json();
+              localStorage.setItem('token', data.access_token);
+              localStorage.setItem('user', JSON.stringify(data.user));
+              router.push("/dashboard");
+            } else {
+              alert('Login failed!');
+            }
+          } catch (error) {
+            console.error('Login error:', error);
+            alert('Network error!');
+          }
         }}
       >
         <div className="text-center mb-8">
@@ -68,7 +87,17 @@ export default function LoginPage() {
           Giriş Yap
         </button>
         
-        <div className="text-center">
+        <div className="text-center space-y-2">
+          <p className="text-sm text-gray-600">
+            Hesabınız yok mu?{' '}
+            <button
+              type="button"
+              onClick={() => router.push('/auth/register')}
+              className="text-emerald-600 hover:text-emerald-700 font-medium"
+            >
+              Kayıt Ol
+            </button>
+          </p>
           <p className="text-xs text-gray-500">
             © 2024 PharmAI - Tüm hakları saklıdır
           </p>

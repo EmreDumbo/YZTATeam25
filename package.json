@@ -1,0 +1,21 @@
+{
+  "name": "pharmai-fullstack",
+  "version": "1.0.0",
+  "description": "PharmAI - AI Pharmacy Assistant with Authentication",
+  "scripts": {
+    "dev": "cd client && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run start:dev",
+    "dev:both": "concurrently \"cd client && npm run dev\" \"cd server && npm run start:dev\"",
+    "build": "cd client && npm run build",
+    "start": "cd client && npm run start",
+    "install:all": "cd client && npm install && cd ../server && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ]
+} 

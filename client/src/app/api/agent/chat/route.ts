@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 import { COMPREHENSIVE_DRUG_DATABASE } from "../../../../lib/comprehensive-drug-db";
+import { DrugData } from "../../../../lib/pharma-apis";
 
 // Define proper TypeScript interface for messages
 interface Message {
@@ -30,7 +31,7 @@ const getComprehensiveDrugResponse = async (userMessage: string): Promise<string
     const drugData = COMPREHENSIVE_DRUG_DATABASE[drugName as keyof typeof COMPREHENSIVE_DRUG_DATABASE];
     
     if (drugData) {
-      return formatDrugResponse(drugData, message);
+      return formatDrugResponse(drugData as DrugData);
     }
   }
 
@@ -54,7 +55,7 @@ const getComprehensiveDrugResponse = async (userMessage: string): Promise<string
   if (potentialDrugName) {
     const drugData = COMPREHENSIVE_DRUG_DATABASE[potentialDrugName as keyof typeof COMPREHENSIVE_DRUG_DATABASE];
     if (drugData) {
-      return formatDrugResponse(drugData, message);
+      return formatDrugResponse(drugData as DrugData);
     }
   }
 
@@ -62,7 +63,7 @@ const getComprehensiveDrugResponse = async (userMessage: string): Promise<string
 };
 
 // Format comprehensive drug response
-const formatDrugResponse = (drugData: any, query: string): string => {
+const formatDrugResponse = (drugData: DrugData): string => {
   const brandNamesStr = drugData.brandNames?.length > 0 ? 
     ` (Brand names: ${drugData.brandNames.slice(0, 5).join(', ')})` : '';
 
@@ -275,7 +276,8 @@ const extractDrugNameFromQuery = (query: string): string | null => {
     
     // Check brand names
     for (const [genericName, drugData] of Object.entries(COMPREHENSIVE_DRUG_DATABASE)) {
-      if (drugData.brandNames?.some((brand: string) => brand.toLowerCase().includes(word))) {
+      const typedDrugData = drugData as DrugData;
+      if (typedDrugData.brandNames?.some((brand: string) => brand.toLowerCase().includes(word))) {
         return genericName;
       }
     }

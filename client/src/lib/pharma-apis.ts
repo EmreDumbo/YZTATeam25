@@ -1,6 +1,28 @@
 // Comprehensive Pharmaceutical APIs Integration
 import { COMPREHENSIVE_DRUG_DATABASE } from './comprehensive-drug-db';
 
+interface ApiResponses {
+  fda?: {
+    results?: Array<{
+      openfda?: {
+        brand_name?: string[];
+        generic_name?: string[];
+      };
+      indications_and_usage?: string[];
+      contraindications?: string[];
+      adverse_reactions?: string[];
+      warnings?: string[];
+      dosage_and_administration?: string[];
+    }>;
+  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  rxnorm?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  drugbank?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dailyMed?: any;
+}
+
 export interface DrugData {
   name: string;
   genericName: string;
@@ -185,7 +207,7 @@ export class PharmaDatabaseManager {
     }
   }
 
-  private enhanceLocalData(localData: any, apiResponses: any): DrugData {
+  private enhanceLocalData(localData: DrugData, apiResponses: ApiResponses): DrugData {
     const enhanced = { ...localData };
 
     // Add any new brand names from FDA data
@@ -197,7 +219,7 @@ export class PharmaDatabaseManager {
     return enhanced as DrugData;
   }
 
-  private combineApiData(drugName: string, apiResponses: any): DrugData {
+  private combineApiData(drugName: string, apiResponses: ApiResponses): DrugData {
     const drug: DrugData = {
       name: drugName,
       genericName: '',
@@ -216,8 +238,10 @@ export class PharmaDatabaseManager {
     // Extract from RxNorm
     if (apiResponses.rxnorm?.drugGroup?.conceptGroup) {
       const concepts = apiResponses.rxnorm.drugGroup.conceptGroup;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       concepts.forEach((group: any) => {
         if (group.conceptProperties) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           group.conceptProperties.forEach((prop: any) => {
             if (prop.synonym) {
               drug.brandNames.push(prop.synonym);
@@ -285,10 +309,13 @@ export class PharmaDatabaseManager {
       
       if (interactions?.interactionTypeGroup) {
         const interactionList: string[] = [];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         interactions.interactionTypeGroup.forEach((group: any) => {
           if (group.interactionType) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             group.interactionType.forEach((interaction: any) => {
               if (interaction.interactionPair) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 interaction.interactionPair.forEach((pair: any) => {
                   if (pair.description) {
                     interactionList.push(pair.description);
@@ -319,13 +346,14 @@ export class PharmaDatabaseManager {
     const matches: string[] = [];
 
     Object.entries(COMPREHENSIVE_DRUG_DATABASE).forEach(([key, drug]) => {
+      const typedDrug = drug as DrugData;
       // Check generic name
-      if (key.includes(queryLower) || drug.name.toLowerCase().includes(queryLower)) {
+      if (key.includes(queryLower) || typedDrug.name.toLowerCase().includes(queryLower)) {
         matches.push(key);
       }
       
       // Check brand names
-      if (drug.brandNames?.some(brand => brand.toLowerCase().includes(queryLower))) {
+      if (typedDrug.brandNames?.some(brand => brand.toLowerCase().includes(queryLower))) {
         matches.push(key);
       }
     });

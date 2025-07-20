@@ -1,10 +1,32 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
+interface User {
+  firstName: string;
+  lastName?: string;
+  email?: string;
+}
+
 export default function ChatPage() {
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    // Check if user is authenticated
+    const token = localStorage.getItem('token');
+    const userData = localStorage.getItem('user');
+    
+    if (!token || !userData) {
+      router.push('/');
+      return;
+    }
+    
+    setUser(JSON.parse(userData));
+  }, [router]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -133,7 +155,7 @@ export default function ChatPage() {
           </div>
         ) : (
           <div className="space-y-6 pt-8">
-            <div className="text-center mb-8">
+            <div className="flex justify-between items-center mb-8">
               <div className="inline-flex items-center space-x-3 px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-emerald-200/50">
                 <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
                   <span className="text-white text-sm">🔬</span>
@@ -141,6 +163,24 @@ export default function ChatPage() {
                 <span className="text-emerald-700 font-medium">PharmAI Assistant</span>
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="text-xs text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full">100+ Drugs</span>
+              </div>
+
+              <div className="flex items-center space-x-3">
+                {user && (
+                  <span className="text-sm text-emerald-700">
+                    Hoş geldin, {user.firstName}!
+                  </span>
+                )}
+                <button
+                  onClick={() => {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    router.push('/');
+                  }}
+                  className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-full text-sm transition-colors"
+                >
+                  Çıkış Yap
+                </button>
               </div>
             </div>
 

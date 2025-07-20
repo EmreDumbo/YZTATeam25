@@ -1,0 +1,26 @@
+{
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  "typescript.workspaceSymbols.scope": "allOpenProjects",
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "files.exclude": {
+    "**/.next": true,
+    "**/node_modules": true,
+    "src": true,
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/.next": true,
+    "src": true,
+    "**/.git": true
+  },
+  "typescript.disableAutomaticTypeAcquisition": false,
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "src": true
+  }
+} 
