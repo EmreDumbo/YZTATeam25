@@ -218,9 +218,12 @@ PharmAI, hastaların ve sağlık profesyonellerinin kullandığı ilaçlar aras�
 
 ## Task Tracking
 
-**20 Temmuz 2025 -  Task Tracking Son Hali**
-
 <img width="1167" height="1338" alt="image" src="https://github.com/user-attachments/assets/b126b6c3-8f30-4aba-87fe-5a321a7271d5" />
+
+
+**20 Temmuz 2025 -  Sprint 2 için Task Tracking Son Hali**
+
+<img width="1028" height="1519" alt="image" src="https://github.com/user-attachments/assets/a0a1189d-8e92-4d56-8a07-a1525729ca3e" />
 
 
  ### Tahmin Edilen Tamamlanacak Puan & Tahmin Mantığı
