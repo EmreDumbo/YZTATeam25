@@ -38,12 +38,12 @@ export default function ChatPage() {
   };
 
   const quickActions = [
-    { icon: '🔍', text: 'Drug Interaction Check', query: 'Check drug interactions for Aspirin and Warfarin' },
-    { icon: '📊', text: 'Dosage Calculator', query: 'Calculate pediatric dosage for Amoxicillin' },
-    { icon: '⚗️', text: 'Compound Formula', query: 'Help me create a custom topical compound' },
-    { icon: '📋', text: 'Inventory Analysis', query: 'Analyze my pharmacy inventory trends' },
-    { icon: '🩺', text: 'Clinical Guidelines', query: 'Latest guidelines for diabetes medication management' },
-    { icon: '💊', text: 'Medication Review', query: 'Review this patient medication list for optimization' }
+    { icon: '🔍', text: 'Drug Interaction Check', query: 'Check drug interactions between warfarin and aspirin - critical bleeding risk' },
+    { icon: '📊', text: 'Dosage Calculator', query: 'What is the correct dosage for metformin in diabetic patients?' },
+    { icon: '⚗️', text: 'Drug Information', query: 'Tell me about sertraline - uses, side effects, and warnings' },
+    { icon: '📋', text: 'Safety Guidelines', query: 'What are the safety guidelines for tramadol and controlled substances?' },
+    { icon: '🩺', text: 'Clinical Usage', query: 'How should amlodipine be used for hypertension management?' },
+    { icon: '💊', text: 'Medication Review', query: 'Compare different blood pressure medications - ACE inhibitors vs ARBs' }
   ];
 
   useEffect(() => {
@@ -62,7 +62,6 @@ export default function ChatPage() {
       <div className="pill8 opacity-30"></div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-6">
-        
         {!isStarted ? (
           <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-8">
             <div className="relative">
@@ -71,14 +70,30 @@ export default function ChatPage() {
               </div>
               <div className="absolute -inset-1 bg-gradient-to-br from-emerald-400 to-cyan-600 rounded-3xl blur opacity-30 animate-pulse"></div>
             </div>
-            
+
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
                 PharmAI
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl">
-                Your intelligent pharmacy assistant powered by advanced AI. Get instant answers on drug interactions, dosages, formulations, and clinical guidelines.
+                Your comprehensive pharmacy assistant with access to <span className="font-bold text-emerald-600">100+ medications</span> from FDA databases. Get instant answers on drug interactions, dosages, and clinical guidelines.
               </p>
+              
+              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 max-w-3xl">
+                <div className="text-sm text-emerald-800">
+                  <div className="font-semibold mb-2">🗄️ Comprehensive Database Includes:</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+                    <div>• Pain Relievers</div>
+                    <div>• Antibiotics</div>
+                    <div>• Heart Medications</div>
+                    <div>• Diabetes Drugs</div>
+                    <div>• Mental Health</div>
+                    <div>• Respiratory</div>
+                    <div>• Hormones</div>
+                    <div>• And Many More!</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-12 w-full max-w-4xl">
@@ -100,6 +115,21 @@ export default function ChatPage() {
                 </button>
               ))}
             </div>
+
+            <div className="mt-8 text-center">
+              <div className="text-sm text-gray-500 mb-2">Try asking about specific medications:</div>
+              <div className="flex flex-wrap justify-center gap-2">
+                {['Metformin', 'Lisinopril', 'Atorvastatin', 'Sertraline', 'Albuterol', 'Omeprazole'].map((drug) => (
+                  <button
+                    key={drug}
+                    onClick={() => setInput(`Tell me about ${drug} - dosage, uses, and side effects`)}
+                    className="px-3 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 rounded-full text-xs transition-colors"
+                  >
+                    {drug}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         ) : (
           <div className="space-y-6 pt-8">
@@ -110,6 +140,7 @@ export default function ChatPage() {
                 </div>
                 <span className="text-emerald-700 font-medium">PharmAI Assistant</span>
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-xs text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full">100+ Drugs</span>
               </div>
             </div>
 
@@ -148,7 +179,7 @@ export default function ChatPage() {
                           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
                           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                         </div>
-                        <span className="text-sm text-gray-600">PharmAI is thinking...</span>
+                        <span className="text-sm text-gray-600">PharmAI is analyzing comprehensive database...</span>
                       </div>
                     </div>
                   </div>
@@ -174,7 +205,7 @@ export default function ChatPage() {
                         sendMessage();
                       }
                     }}
-                    placeholder="Ask about drug interactions, dosages, formulations, or clinical guidelines..."
+                    placeholder="Ask about any of 100+ medications: dosages, interactions, side effects, clinical guidelines..."
                     className="w-full h-full px-4 py-3 bg-transparent border-none resize-none focus:outline-none text-gray-800 placeholder-gray-500"
                     disabled={loading}
                     rows={1}
