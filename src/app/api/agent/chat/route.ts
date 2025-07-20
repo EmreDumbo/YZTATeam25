@@ -1,6 +1,12 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
+// Define proper TypeScript interface for messages
+interface Message {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 // Securely get the API key from environment variables.
 // Keeping this line outside the function prevents it from being re-initialized on every request.
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
@@ -8,10 +14,10 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 export async function POST(req: Request) {
   try {
     // Get the message history from the frontend.
-    const { messages } = await req.json();
+    const { messages }: { messages: Message[] } = await req.json();
 
     // Get the last user message (same logic as before).
-    const userMessage = messages.filter((m: any) => m.role === "user").pop()?.content || "";
+    const userMessage = messages.filter((m: Message) => m.role === "user").pop()?.content || "";
 
     if (!userMessage) {
       return NextResponse.json({ error: "User message is empty" }, { status: 400 });
