@@ -62,7 +62,6 @@ export default function ChatPage() {
       <div className="pill8 opacity-30"></div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-6">
-        
         {!isStarted ? (
           <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-8">
             <div className="relative">
@@ -71,7 +70,7 @@ export default function ChatPage() {
               </div>
               <div className="absolute -inset-1 bg-gradient-to-br from-emerald-400 to-cyan-600 rounded-3xl blur opacity-30 animate-pulse"></div>
             </div>
-            
+
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
                 PharmAI
