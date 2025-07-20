@@ -5,9 +5,9 @@
 
 | İsim             | Rol             | GitHub |
 |------------------|------------------|--------|
-| Beyzanur Eker    | Product Owner    | [@Beyzanurekerr](https://github.com/Beyzanurekerr) |
+| Beyzanur Eker    |   Developer      | [@Beyzanurekerr](https://github.com/Beyzanurekerr) |
 | Hatice Kandemir  | Developer        | [@HaticeKandemir](https://github.com/HaticeKandemir) |
-| Ayşe Dündar      | Developer        | [@Ayse-D](https://github.com/Ayse-D) |
+| Ayşe Dündar      | Product Owner    | [@Ayse-D](https://github.com/Ayse-D) |
 | Emre Dumbo       | Developer        | [@EmreDumbo](https://github.com/EmreDumbo) |
 | Sefa Duman       | Scrum Master     | [@sefadumann](https://github.com/sefadumann) |
 
@@ -38,7 +38,6 @@ Proje, **ilaç prospektüslerindeki uzun, karmaşık metinleri herkesin anlayabi
 
 <details>
   <summary><h1> 📂 Sprint 1 </h1></summary>
-
 
 > **Sprint Tarihleri:** 20 Haziran 2025 – 6 Temmuz 2025  
 > **Toplam Puan:** 100
@@ -207,8 +206,131 @@ PharmAI, hastaların ve sağlık profesyonellerinin kullandığı ilaçlar aras�
 ### Aksiyonlar:
 - Türkçe terim sözlüğü hazırlanacak.
 - Sprint 2 için wireframe görev dağılımı yapılacak.
+</details>
 
-## 📌 Notlar
+
+
+<details>
+  <summary><h1> 📂 Sprint 2 </h1></summary>
+
+> **Sprint Tarihleri:** 07 Temmuz 2025 – 20 Temmuz 2025  
+> **Toplam Puan:** 100
+
+| Görev Başlığı | Puan |
+| --- | --- |
+| Kullanıcı Girişi ve Kullanıcı Database | 15 |
+| Sprint 1’den Kalan Wireframe tamamlanması | 10 |
+| Chatbot Arayüzü ve Sorgu Akışı | 15 |
+| Kullanıcı Arayüz Tasarımı ve Fonksiyon Bağlantılar | 20 |
+| RxNorm API Entegrasyonu ve Etken Madde Çıkarımı | 20 |
+| Yan Etki, Dozaj ve Kullanım Bilgisi Hakkında Bilgi | 20 |
+| **Toplam** | 100 |
+
+1. **Story Point Dağılımı**  
+   – Her bir user story, karmaşıklığına ve iş yükünü göz önüne alarak 10-25 puan aralığında değerlendirildi.  
+2. **Ekip Kapasitesi**  
+   – Birinci sprintte toplam 100 puan başarıyla tamamlandı. Aynı tempo ve katkının süreceği varsayılarak 100 puan sabit tutuldu.  
+3. **Risk & Buffer**  
+   – API kaynaklarındaki erişim problemleri, chatbot düzeyi gibi teknik engeller için ayrıca %10’luk buffer hesaplaması dikkate alındı.  
+4. **Sonuç**  
+   – 100 puanlık hedef bu sprint için de yeterli, dengeli ve uygulanabilir bulunmuştur.
+
+   
+
+## Sprint 2 Burndown Chart
+<img width="1980" height="1180" alt="output (1)" src="https://github.com/user-attachments/assets/5c9b2e19-14c7-4fa3-b0b9-6876bc87f815" />
+Sprint 2 Burndown Chart'ına göre:
+
+Başlangıçta ilerleme yavaş olmuş (7–11 Temmuz arası), bu da ilk görevlerin daha uzun sürdüğünü veya başlamada gecikmeler yaşandı.
+
+Orta kısımdan itibaren (12–17 Temmuz) işlerin hızlandığı, günlük daha fazla puanın tamamlandığı görülüyor.
+
+Sprint sonunda kalan işler büyük ölçüde bitirilmiş, 20 Temmuz'da tüm iş tamamlanmış.
+
+
+## Sprint Notları
+→ Yeni Product Owner Ayşe Dündar olmuştur. Beyzanur Eker developer olarak devam edecektir.
+
+→ Kullanıcı senaryoları ve prompt örnekleri oluşturulmuş, chatbot alt yapısı şekillendirilmeye başlanmıştır.
+
+→ Veri ile çalışan yapay zeka bileşenleri için SIDER verisi incelenmiş, ayrıca RxNorm API bağlantıları kurulmuştur.
+
+→API üzerinden ilaç ismi girilerek etken maddeye, oradan da etkileşim/yan etki analizine ulaşma süreci kurgulanmıştır.
+
+→ Arayüz prototipi tamamlanmış, Next.js ile frontend geliştirme süreci başlamıştır.
+
+→ RxNav ve [ilacprospektusu.com](http://ilacprospektusu.com/) gibi kaynaklar üzerinden scraping/API ile bilgi alma stratejileri araştırılmıştır.
+
+### Her günkü Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne planlandı) aşağıdaki excel dosyasında bulunmaktadır.
+
+[Sprint2_Daily_Scrum.xlsx](https://github.com/user-attachments/files/21337422/Sprint2_Daily_Scrum.xlsx)
+
+
+## SPRINT 2 User Stories
+
+**USER STORY 1 – Kullanıcı Girişi ve Kısıtların Tanımlanması (15 puan)**
+
+
+- Kullanıcı, uygulamaya kayıt olabilmeli ve giriş yapabilmelidir.
+    ![WhatsApp Görsel 2025-07-20 saat 15 40 11_a470c9c4](https://github.com/user-attachments/assets/809d2cd2-c230-495f-b1e6-0cee34ec91ff)
+
+    ![WhatsApp Görsel 2025-07-20 saat 15 40 11_6ff12a15](https://github.com/user-attachments/assets/0e2f3493-4573-4b46-801e-d357cc662646)
+
+- Kullanıcı database kaydı tutulmalıdır.
+
+**USER STORY 2 – Ana Sayfa Görsel Arayüz Tasarımı ve Fonksiyon Bağlantıları (20 puan)**
+
+- Ana ekranda modül kartları oluşturulmalı: İlaç Bilgisi, Yan Etkiler, Dozaj, Etkileşim, Klinik Rehberlik.
+    
+    ![WhatsApp Görsel 2025-07-20 saat 16 03 01_0ea606e1](https://github.com/user-attachments/assets/4bfa7985-e008-4435-afd8-ef7e320b1e3f)
+
+- İlaç sorgulama, dozaj hesaplama, ilaç bilgileri gibi temel modül kartları yerleştirilmeli.
+- Her modül kartın ilgili sayfa ile bağlantısı sağlanmalı.
+
+**USER STORY 3 – RxNorm API Entegrasyonu ve Etken Madde Çıkarımı (20 puan)**
+
+- Kullanıcının yazdığı ticari ad üzerinden RxCUI kodu alınıp, etken maddeye ulaşılmalı.
+    
+   ![WhatsApp Görsel 2025-07-20 saat 19 04 54_b044a58d](https://github.com/user-attachments/assets/1c1dabaf-d16f-4d24-843d-7401e367fcb4)
+
+- Etken maddeyle ilişkili etkileşim ve yan etki bilgileri alınabilmeli.
+- İlk fazda 50 yaygın ilaca ait bilgiler manuel olarak farklı databaselerden çekildi.
+  
+**USER STORY 4 – Yan Etki, Dozaj ve Kullanım Bilgisi Sunumu (20 puan)**
+
+- API ile gelen bilgilerin LLM tarafından eğitici özette sunumu sağlanmalı.
+- Örnek: "Parol dozajı nedir?" sorusuna hem ölçekli hem dikkat uyarılı yanıtlar verilmeli.
+    ![WhatsApp Görsel 2025-07-20 saat 15 40 11_7454b939](https://github.com/user-attachments/assets/96890c66-65d8-4a5b-b9cd-f32c64efd653)
+
+**USER STORY 5 – Chatbot Arayüzü ve Sorgu Akışı (15 puan)**
+
+- Kullanıcı, ekranda doğrudan sorgusunu yazabiliyor halde olmalı.
+
+![WhatsApp Görsel 2025-07-20 saat 15 40 11_35463bc0](https://github.com/user-attachments/assets/2aa3f614-360c-452c-8c0f-013ed4de78f9)
+
+- Prompt bazlı dozaj önerisi ve yan etki sorgularına karşı mantıklı cevap akışları tanımlanmalı.
+- Şimdilik stub cevaplar, sonradan LLM entegrasyonu yapılacak.
+
+**USER STORY 6 – Sprint 1'den Kalan Wireframe Tamamlanması (10 puan)**
+
+### Sprint Review
+
+- Ana ekran kullanıcıyı sade modüllerle karşılamakta ve yönlendirme kartları etkili çalışmaktadır.
+- Chatbot ile yapılan sorgular, ilaç ismi ve temel bilgi sunumu açısından başarılı sonuçlar vermektedir.
+- RxNorm API entegrasyonu ile etken madde ve etkileşim bilgileri alınabilir hale gelmiştir.
+- Dozaj ve uyarı bilgileri, kullanıcıya basitleştirilmiş dilde sunulmaktadır.
+- Tüm sayfalarda temel görsel bütünlük ve responsive tasarım sağlandı.
+
+### Sprint Retrospective
+
+- LLM entegrasyonunun sağlanması için veri tabanı daha efektif kullanılmalıdır.
+- Chatbot cevaplarının hızını artırmak ve daha doğal karşılıklar için prompt iyileştirmesi gerekmekte ve türkçe dil desteği sorunlarının çözülmesi gerekmektedir.
+- UI geçiş animasyonları eksik kalmış olup, bunların 3. sprintte tamamlanması planlandı.
+- Kullanıcıyı yönlendiren “sık sorulan sorular” eklenecek.
+- Olası durumlara karşı hata yönetimi için try-expect blokları geliştirilecek.
+</details>
+
+##  📌 Notlar
 
 - Bu ürün MVP niteliğindedir (Minimum Viable Product).  
 - Nihai hedef: kullanıcıya hızlı, açık ve doğru uyarılar sunan basit bir karar destek aracı geliştirmek.
