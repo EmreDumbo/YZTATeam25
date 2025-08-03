@@ -13,7 +13,8 @@
 
 # Ürün İle İlgili Bilgiler
   <h1> PharmAI: Yapay Zeka Destekli İlaç Etkileşimi ve Yan Etki Kontrol Sistemi 
- <img width="1024" height="576" alt="PharmAI_Logo" src="https://github.com/user-attachments/assets/fc763ac9-3bcc-4159-9a69-fced16a1930d" /></h1>
+ 
+![Heading (1)](https://github.com/user-attachments/assets/0b8c512a-9ca9-49c6-91ae-39154566e0c9)</h1>
 
 ## Ürün Hakkında
 
