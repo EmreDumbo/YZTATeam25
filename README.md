@@ -25,8 +25,8 @@ Proje, **ilaç prospektüslerindeki uzun, karmaşık metinleri herkesin anlayabi
 
 > *“Sağlık okuryazarlığını artırarak, ilaç kullanımını güvenli ve bilinçli hâle getiren, yapay zekâ destekli interaktif bir sağlık asistanı oluşturmak.”*
 
-## Ürün Tanıtım Videosu
-https://youtu.be/GasaaWlgYCE?si=MRmwm4tSnnqkbAgh
+## Ürün Tanıtım Videosu: https://youtu.be/GasaaWlgYCE?si=MRmwm4tSnnqkbAgh
+
 
 ## 🎯 Hedef Kitle  
 - **Hastalar:** Kullandıkları ilaçlar arasında etkileşim olup olmadığını öğrenmek, yan etkileri anlamak ve güvenli kullanım için bilgi almak isteyen bireyler.
