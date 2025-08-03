@@ -7,16 +7,15 @@ export class GeminiService {
   private model: any;
 
   constructor() {
+    // API key'i environment variable'dan al
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       console.warn('GEMINI_API_KEY environment variable is not set');
       return;
     }
 
-    // Free tier Türkiye sorunu için region override
-    this.genAI = new GoogleGenerativeAI(apiKey, {
-      apiEndpoint: 'https://us-central1-aiplatform.googleapis.com'
-    });
+    // Initialize GoogleGenerativeAI with just the API key
+    this.genAI = new GoogleGenerativeAI(apiKey);
 
     this.model = this.genAI.getGenerativeModel({
       model: 'gemini-1.5-flash',

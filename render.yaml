@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: pharmai-backend
+    env: node
+    plan: free
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false
+
+  - type: web
+    name: pharmai-frontend
+    env: node
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    startCommand: cd client && npm start
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://pharmai-backend.onrender.com 
