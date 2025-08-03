@@ -351,8 +351,7 @@ Sprint sonunda kalan işler büyük ölçüde bitirilmiş, 20 Temmuz'da tüm iş
   > **Sprint 1-2-3 Hedeflenen Toplam Puan:** 300
 
 ## Task Tracking 
-<img width="1253" height="1246" alt="image" src="https://github.com/user-attachments/assets/10e36681-74cf-42dd-8651-0109bbecbe19" />
-
+<img width="1200" height="1302" alt="image" src="https://github.com/user-attachments/assets/ce65267a-3bd9-4cad-b68f-31d93c17faa9" />
 
 #### *3  Ağustos 2025 -  Sprint 3 için Task Tracking Son Hali*
 
@@ -373,7 +372,7 @@ Sprint sonunda kalan işler büyük ölçüde bitirilmiş, 20 Temmuz'da tüm iş
 - Sprint 3 için de ekip kapasitesi **100 puan** olarak sabit tutulmuştur.
 
 ## Sprint 3 Burndown Chart
-<img width="2375" height="1380" alt="output (2)" src="https://github.com/user-attachments/assets/5f120a7f-a835-4018-8fd7-cd5d9c0d56aa" />
+<img width="2375" height="1380" alt="output (3)" src="https://github.com/user-attachments/assets/4ed83f20-acbe-4ec3-8a34-eeef5b224ad3" />
 
 Sprint 3 Burndown Chart'ına göre:
 
@@ -381,7 +380,7 @@ Sprint 3 Burndown Chart'ına göre:
 
 → Orta fazda (26 Temmuz–31 Temmuz) işlerin hızlandığı ve birden fazla ana modülün peş peşe tamamlandı.
 
-→ Sprintin sonuna gelindiğinde ise kalan bazı ana görevlerin (Firestore DB ve FAQ) zamanında tamamlanamadığı ve burndown çizgisinin sıfıra kadar inmediği gözlemleniyor.
+→Sprint sonunda ise, Firestore veritabanı entegrasyonu zamanında bitirilemediği için burndown çizgisi sıfıra kadar inmedi; sprintin sonunda 15 puanlık iş eksik kaldı.
 
 Genel olarak, Sprint 3’te işler planlı şekilde ilerlemiş; ancak son aşamada bazı teknik engeller ve zaman yönetimi kaynaklı tamamlanamayan işler kalmış, bu da grafikte kalan puanın sıfıra inmemesine sebep olmuştur.
 
@@ -415,14 +414,20 @@ Genel olarak, Sprint 3’te işler planlı şekilde ilerlemiş; ancak son aşama
 
 **USER STORY 3 – LLM/Chatbot Context Memory & Prompt Gelişimi (20 puan)**
 
-- Chatbot önceki soruları ve kullanıcı bilgisini hatırlayabilmeli (minimum: son sorguyu hatırlama).
+- Chatbot için sesli giriş ve okuma yapılmalı.
+- Context Memory ile önceki soruları ve kullanıcı bilgisini hatırlayabilmeli (minimum: son sorguyu hatırlama).
 - LLM promptları, kullanıcının yaş, kilo, mevcut ilaç gibi verileriyle otomatik zenginleşmeli ve kişiselleşmiş cevaplar üretmeli.
 - Yan etkilerde Türkçe sözlük desteği, SIDER/RxNorm pipeline ile veri birleştirme çalışmalı.
+- ![deneme1](https://github.com/user-attachments/assets/54ab826d-a540-4128-b5ed-f5e142398f11)
+- ![deneme 2](https://github.com/user-attachments/assets/f1118931-727f-45e7-9bb0-4f35d27997a8)
+
 
 **USER STORY 4 – Sık Sorulan Sorular (FAQ) ve Hata Yönetimi (10 puan)**
 
 - Sık sorulan sorular sayfası hazırlanmalı (opsiyonel ama önerilir).
 - Chatbot ve arayüzde hata yönetimi (eksik veri, bulunamayan ilaç, API hatası vs.) için kullanıcı dostu açıklamalar ve retry seçenekleri eklenmeli.
+  ![sıksorulansorular](https://github.com/user-attachments/assets/8289c20e-a2f8-4b90-a690-683dc6716716)
+
 
 **USER STORY 5 – Veri Pipeline Finali & Türkçe Sözlük (15 puan)**
 
