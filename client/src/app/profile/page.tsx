@@ -126,12 +126,6 @@ export default function ProfilePage() {
                 🏠 Ana Sayfa
               </button>
               <button
-                onClick={() => router.push('/chat')}
-                className="px-4 py-2 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 rounded-full text-sm transition-all duration-200 hover:shadow-md hover:scale-105"
-              >
-                💬 Chat
-              </button>
-              <button
                 onClick={() => setIsEditing(!isEditing)}
                 className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-full hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 hover:shadow-lg hover:scale-105"
               >

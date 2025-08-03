@@ -1,48 +1,55 @@
 import { Injectable } from '@nestjs/common';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 
 @Injectable()
-export class GeminiService {
-  private genAI: GoogleGenerativeAI;
-  private model: any;
+export class GptService {
+  private openai: OpenAI;
+  private model: string = 'gpt-3.5-turbo';
 
   constructor() {
     // API key'i environment variable'dan al
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
-      console.warn('GEMINI_API_KEY environment variable is not set');
+      console.warn('OPENAI_API_KEY environment variable is not set');
       return;
     }
 
-    // Initialize GoogleGenerativeAI with just the API key
-    this.genAI = new GoogleGenerativeAI(apiKey);
-
-    this.model = this.genAI.getGenerativeModel({
-      model: 'gemini-1.5-flash',
-      generationConfig: {
-        temperature: 0.7,
-        topK: 40,
-        topP: 0.95,
-        maxOutputTokens: 2048,
-      },
+    // Initialize OpenAI with API key
+    this.openai = new OpenAI({
+      apiKey: apiKey,
     });
   }
 
   async generateResponse(prompt: string): Promise<string> {
     try {
-      if (!this.model) {
-        return 'AI servisi henüz yapılandırılmamış. Lütfen GEMINI_API_KEY environment variable\'ını ayarlayın.';
+      if (!this.openai) {
+        return 'AI servisi henüz yapılandırılmamış. Lütfen OPENAI_API_KEY environment variable\'ını ayarlayın.';
       }
 
-      const result = await this.model.generateContent(prompt);
-      const response = await result.response;
-      return response.text();
+      const completion = await this.openai.chat.completions.create({
+        model: this.model,
+        messages: [
+          {
+            role: 'user',
+            content: prompt,
+          },
+        ],
+        max_tokens: 2048,
+        temperature: 0.7,
+      });
+
+      return completion.choices[0]?.message?.content || 'Yanıt alınamadı.';
     } catch (error) {
-      console.error('Gemini API Error:', error);
+      console.error('OpenAI API Error:', error);
       
-      // Region hatası varsa daha detaylı mesaj ver
-      if (error.message && (error.message.includes('free tier is not available') || error.message.includes('not available in your country'))) {
-        return 'Gemini API Türkiye\'de ücretsiz kullanım için mevcut değil. Lütfen Google AI Studio\'da billing\'i aktif edin veya farklı bir region kullanın.';
+      // API key hatası varsa daha detaylı mesaj ver
+      if (error.message && error.message.includes('invalid api key')) {
+        return 'OpenAI API anahtarı geçersiz. Lütfen geçerli bir API anahtarı ayarlayın.';
+      }
+      
+      // Rate limit hatası
+      if (error.message && (error.message.includes('rate limit') || error.message.includes('quota'))) {
+        return this.getFallbackResponse(prompt);
       }
       
       return 'Üzgünüm, şu anda AI servisine erişim sağlayamıyorum. Lütfen daha sonra tekrar deneyin.';
@@ -58,6 +65,7 @@ export class GeminiService {
     let prompt = `Sen *PharmAI* adında profesyonel bir eczacılık ve ilaç danışmanı asistansın.
 Kullanıcıya ilaç ve kişisel sağlık bilgilerini birleştirerek *kişiselleştirilmiş, güvenli ve anlaşılır* bilgi sunacaksın.
 
+
 GÖREVİN:
 - Kullanıcıların ilaç sorularını yanıtla
 - İlaç etkileşimlerini kontrol et
@@ -65,9 +73,6 @@ GÖREVİN:
 - Yan etkiler hakkında bilgi ver
 - Güvenlik uyarıları yap
 - Türkçe yanıt ver
-- Önceki konuşma geçmişini dikkate al
-- Kullanıcının sağlık durumunu takip et
-- Devam sorularını anlayıp bağlantılı yanıtlar ver
 
 KULLANICI PROFİLİ:
 `;
@@ -100,19 +105,12 @@ KULLANICI PROFİLİ:
 `;
 
     if (previousMessages.length > 0) {
-      prompt += `ÖNCEKİ KONUŞMA GEÇMİŞİ (Son 5 mesaj):\n`;
-      previousMessages.slice(-5).forEach((msg, index) => {
+      prompt += `ÖNCEKİ KONUŞMA GEÇMİŞİ:\n`;
+      previousMessages.reverse().forEach((msg, index) => {
         prompt += `${index + 1}. Kullanıcı: ${msg.message}\n`;
         prompt += `   Asistan: ${msg.response}\n`;
       });
       prompt += `\n`;
-      
-      // Context analizi
-      prompt += `KONUŞMA ANALİZİ:\n`;
-      prompt += `- Kullanıcının son sorularına odaklan\n`;
-      prompt += `- Önceki ilaç isimlerini hatırla\n`;
-      prompt += `- Kullanıcının sağlık durumunu takip et\n`;
-      prompt += `- Devam sorularını anlayıp bağlantılı yanıtlar ver\n\n`;
     }
 
     prompt += `KULLANICININ SORUSU: ${userMessage}
@@ -132,9 +130,6 @@ YANIT KURALLARI:
 12. Kullanıcı *yaş, kilo* veya *mevcut ilaçlar* bilgisini vermediyse,
 - Yanıtı kes ve eksik olanları özel olarak belirtip rica et:
   > "Kişiselleştirilmiş doz için lütfen yaşınızı, kilonuzu ve kullandığınız ilaçları paylaşın."
-13. Önceki konuşma geçmişini dikkate al ve devam sorularını anla
-14. Kullanıcının sağlık durumunu takip et ve tutarlı öneriler ver
-15. İlaç isimlerini ve kullanıcının durumunu hatırla
 
 Lütfen bu kurallara uygun olarak kullanıcının sorusunu yanıtla.`;
 
@@ -153,7 +148,32 @@ Lütfen bu kurallara uygun olarak kullanıcının sorusunu yanıtla.`;
     
     return age;
   }
-}
 
-
-
+  private getFallbackResponse(prompt: string): string {
+    // Basit keyword-based responses
+    const lowerPrompt = prompt.toLowerCase();
+    
+    if (lowerPrompt.includes('parol') || lowerPrompt.includes('parasetamol')) {
+      return 'Parol (Parasetamol) ateş düşürücü ve ağrı kesici bir ilaçtır. Yetişkinler için günde 3-4 kez 500-1000mg alınabilir. Mide bulantısı ve karaciğer problemleri yapabilir. Bu bilgiler eğitim amaçlıdır. Kesin doz ve tedavi planı için doktorunuza danışınız.';
+    }
+    
+    if (lowerPrompt.includes('arveles') || lowerPrompt.includes('dexketoprofen')) {
+      return 'Arveles (Dexketoprofen) NSAİİ grubu ağrı kesici bir ilaçtır. Yemeklerle birlikte alınmalıdır. Mide problemleri yapabilir. Bu bilgiler eğitim amaçlıdır. Kesin doz ve tedavi planı için doktorunuza danışınız.';
+    }
+    
+    if (lowerPrompt.includes('nurofen') || lowerPrompt.includes('ibuprofen')) {
+      return 'Nurofen (İbuprofen) ağrı ve ateş kesici bir ilaçtır. Yetişkinler için günde 3-4 kez 400-600mg alınabilir. Mide problemleri yapabilir. Bu bilgiler eğitim amaçlıdır. Kesin doz ve tedavi planı için doktorunuza danışınız.';
+    }
+    
+    if (lowerPrompt.includes('augmentin') || lowerPrompt.includes('antibiyotik')) {
+      return 'Augmentin (Amoksisilin + Klavulanik Asit) antibiyotik bir ilaçtır. Doktor reçetesi ile kullanılmalıdır. Mide bulantısı ve ishal yapabilir. Bu bilgiler eğitim amaçlıdır. Kesin doz ve tedavi planı için doktorunuza danışınız.';
+    }
+    
+    if (lowerPrompt.includes('ventolin') || lowerPrompt.includes('astım')) {
+      return 'Ventolin (Salbutamol) astım ilacıdır. Solunum yolu ile kullanılır. Kalp çarpıntısı yapabilir. Bu bilgiler eğitim amaçlıdır. Kesin doz ve tedavi planı için doktorunuza danışınız.';
+    }
+    
+    // Genel response
+    return 'Üzgünüm, şu anda AI servisine erişim sağlayamıyorum. Lütfen daha sonra tekrar deneyin veya doktorunuza danışın. Bu bilgiler eğitim amaçlıdır. Kesin doz ve tedavi planı için doktorunuza danışınız.';
+  }
+} 
