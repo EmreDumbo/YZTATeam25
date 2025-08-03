@@ -12,9 +12,8 @@
 | Sefa Duman       | Scrum Master     | [@sefadumann](https://github.com/sefadumann) |
 
 # Ürün İle İlgili Bilgiler
-
-## Ürün İsmi 
-PharmAI: Yapay Zeka Destekli İlaç Etkileşimi ve Yan Etki Kontrol Sistemi
+  <h1> PharmAI: Yapay Zeka Destekli İlaç Etkileşimi ve Yan Etki Kontrol Sistemi 
+ <img width="1024" height="576" alt="PharmAI_Logo" src="https://github.com/user-attachments/assets/fc763ac9-3bcc-4159-9a69-fced16a1930d" /></h1>
 
 ## Ürün Hakkında
 
@@ -341,6 +340,101 @@ Sprint sonunda kalan işler büyük ölçüde bitirilmiş, 20 Temmuz'da tüm iş
 - Kullanıcıyı yönlendiren “sık sorulan sorular” eklenecek.
 - Olası durumlara karşı hata yönetimi için try-expect blokları geliştirilecek.
 </details>
+
+<details>
+  <summary><h1> 📂 Sprint 3 </h1></summary>
+  
+  > **Sprint Tarihleri:** 21 Temmuz 2025 – 3 Ağustos 2025
+> 
+  > **Toplam Puan:** 100
+> 
+  > **Sprint 1-2-3 Hedeflenen Toplam Puan:** 300
+
+## Task Tracking 
+<img width="1253" height="1246" alt="image" src="https://github.com/user-attachments/assets/10e36681-74cf-42dd-8651-0109bbecbe19" />
+
+
+#### *3  Ağustos 2025 -  Sprint 3 için Task Tracking Son Hali*
+
+ ### Tahmin Edilen Tamamlanacak Puan & Tahmin Mantığı
+
+| Görev Başlığı | Puan |
+| --- | --- |
+| Kullanıcı Profil & Sağlık Bilgileri Yönetimi | 15 |
+| Firestore/Supabase ile Kullanıcı DB ve Geçmiş | 15 |
+| LLM/Chatbot Context Memory & Prompt Gelişimi | 20 |
+| Sık Sorulan Sorular (FAQ) & Hata Yönetimi | 10 |
+| Veri Pipeline Sonlandırma & Türkçe Sözlük | 15 |
+| Son Test, Demo, Teslimat ve Video | 25 |
+| **Toplam** | 100 |
+
+### **Sprint 3 Story Point Dağılımı**
+- **Her bir user story**, karmaşıklığı ve iş yükü göz önünde bulundurularak **10-25 puan aralığında** değerlendirilmiştir.
+- Sprint 3 için de ekip kapasitesi **100 puan** olarak sabit tutulmuştur.
+
+## Sprint 3 Burndown Chart
+<img width="2375" height="1380" alt="output (2)" src="https://github.com/user-attachments/assets/5f120a7f-a835-4018-8fd7-cd5d9c0d56aa" />
+
+Sprint 3 Burndown Chart'ına göre:
+
+→ Başlangıçta ilerleme orta tempolu ilerlemiş, ilk birkaç gün (21–25 Temmuz) toplam puanın yaklaşık %25’i tamamlandı.
+
+→ Orta fazda (26 Temmuz–31 Temmuz) işlerin hızlandığı ve birden fazla ana modülün peş peşe tamamlandı.
+
+→ Sprintin sonuna gelindiğinde ise kalan bazı ana görevlerin (Firestore DB ve FAQ) zamanında tamamlanamadığı ve burndown çizgisinin sıfıra kadar inmediği gözlemleniyor.
+
+Genel olarak, Sprint 3’te işler planlı şekilde ilerlemiş; ancak son aşamada bazı teknik engeller ve zaman yönetimi kaynaklı tamamlanamayan işler kalmış, bu da grafikte kalan puanın sıfıra inmemesine sebep olmuştur.
+
+ ### Sprint Notları 
+
+→ Profil ve sağlık bilgisi modülü geliştirildi.
+
+→ Chatbot, kişiselleştirilmiş ve context-aware şekilde çalışıyor.
+
+→ Yan etki, etkileşim ve dozaj pipeline’ı finalize edildi; Mini Türkçe sözlük oluşturuldu.
+
+→ Hata yönetimi ve kullanıcı deneyimi geliştirmeleri yapıldı.
+
+→ Demo/test ve son teslim dosyaları hazırlandı.
+
+
+### **Sprint 3 USER STORY’LERİ**
+
+**USER STORY 1 – Kullanıcı Profil & Sağlık Bilgileri (15 puan)**
+
+- Kullanıcı temel bilgiler (isim, yaş, cinsiyet), kilo, mevcut ilaçlar, alerjiler ve kronik hastalıklar gibi sağlık bilgilerini arayüzde girebilmeli.
+- Eksik veri varsa chatbot/arayüz kullanıcıya otomatik yönlendirme yapmalı.
+  
+  ![kullanıcı girdisi](https://github.com/user-attachments/assets/39d04a86-500e-4451-a864-0ec31ff9411d)
+
+
+**USER STORY 2 – Firestore/Supabase ve Kullanıcı DB (15 puan)**
+
+- Kayıt olan kullanıcılar, arama ve geçmiş sorguları Firestore/Supabase gibi bir veritabanında güvenli şekilde saklanmalı.
+- Kullanıcıya ait tüm bilgiler, geçmiş ve raporlar panelden erişilebilir olmalı.
+
+**USER STORY 3 – LLM/Chatbot Context Memory & Prompt Gelişimi (20 puan)**
+
+- Chatbot önceki soruları ve kullanıcı bilgisini hatırlayabilmeli (minimum: son sorguyu hatırlama).
+- LLM promptları, kullanıcının yaş, kilo, mevcut ilaç gibi verileriyle otomatik zenginleşmeli ve kişiselleşmiş cevaplar üretmeli.
+- Yan etkilerde Türkçe sözlük desteği, SIDER/RxNorm pipeline ile veri birleştirme çalışmalı.
+
+**USER STORY 4 – Sık Sorulan Sorular (FAQ) ve Hata Yönetimi (10 puan)**
+
+- Sık sorulan sorular sayfası hazırlanmalı (opsiyonel ama önerilir).
+- Chatbot ve arayüzde hata yönetimi (eksik veri, bulunamayan ilaç, API hatası vs.) için kullanıcı dostu açıklamalar ve retry seçenekleri eklenmeli.
+
+**USER STORY 5 – Veri Pipeline Finali & Türkçe Sözlük (15 puan)**
+
+- SIDER ve RxNorm verileriyle entegre çalışan, çıkmayan yan etki/etkileşim hatalarını minimize eden pipeline tamamlanmalı.
+- Türkçe sözlükte eksik kalan terimler güncellenmeli.
+
+**USER STORY 6 – Son Test, Demo, Teslimat ve Video (25 puan)**
+
+- Ürünün çalışan, deploy edilmiş versiyonu teslim edilmeli.
+- Kod, dökümantasyon, demo videosu ve teslim formu eksiksiz tamamlanmalı.
+- Github repoda tüm kaynaklar güncel olmalı, 1 dakikalık demo videosu ve canlı link/form eklenmeli.
+  </details>
 
 ##  📌 Notlar
 
