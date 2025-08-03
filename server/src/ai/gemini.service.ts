@@ -7,16 +7,18 @@ export class GeminiService {
   private model: any;
 
   constructor() {
-    // API key'i environment variable'dan al
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
       console.warn('GEMINI_API_KEY environment variable is not set');
       return;
     }
 
-    this.genAI = new GoogleGenerativeAI(apiKey);
-    // Region'u us-west1 olarak ayarla (Türkiye'de free tier sorunu var)
-    this.model = this.genAI.getGenerativeModel({ 
+    // Free tier Türkiye sorunu için region override
+    this.genAI = new GoogleGenerativeAI(apiKey, {
+      apiEndpoint: 'https://us-central1-aiplatform.googleapis.com'
+    });
+
+    this.model = this.genAI.getGenerativeModel({
       model: 'gemini-1.5-flash',
       generationConfig: {
         temperature: 0.7,
@@ -54,7 +56,9 @@ export class GeminiService {
     previousMessages: any[],
     drugDatabase: any
   ): Promise<string> {
-    let prompt = `Sen Türkiye'de çalışan deneyimli bir eczacısın. PharmAI adlı bir eczane asistanı uygulamasında görev yapıyorsun.
+    let prompt = `Sen *PharmAI* adında profesyonel bir eczacılık ve ilaç danışmanı asistansın.
+Kullanıcıya ilaç ve kişisel sağlık bilgilerini birleştirerek *kişiselleştirilmiş, güvenli ve anlaşılır* bilgi sunacaksın.
+
 
 GÖREVİN:
 - Kullanıcıların ilaç sorularını yanıtla
@@ -63,7 +67,7 @@ GÖREVİN:
 - Yan etkiler hakkında bilgi ver
 - Güvenlik uyarıları yap
 - Türkçe yanıt ver
-
+-
 KULLANICI PROFİLİ:
 `;
 
@@ -115,7 +119,11 @@ YANIT KURALLARI:
 7. Ciddi durumlarda mutlaka doktora gitmesini öner
 8. Yanıtın anlaşılır ve güvenilir olmasına dikkat et
 9. İlaç isimlerini Türkçe ticari isimleriyle kullan
-10. Reçetesiz ilaçlar için bile doktor onayı öner
+10.Reçeteli veya reçetesiz her türlü ilaç için doktor onayı öner; her yanıtın sonunda mutlaka şu ifadeyi ekle: “Bu bilgiler eğitim amaçlıdır. Kesin doz ve tedavi planı için doktorunuza danışınız.”
+11. *Asla teşhis koyma, reçete yazma, doktor önerisi sunmadan tedavi önermeye çalışma!*
+12. Kullanıcı *yaş, kilo* veya *mevcut ilaçlar* bilgisini vermediyse,
+- Yanıtı kes ve eksik olanları özel olarak belirtip rica et:
+  > “Kişiselleştirilmiş doz için lütfen yaşınızı, kilonuzu ve kullandığınız ilaçları paylaşın.”
 
 Lütfen bu kurallara uygun olarak kullanıcının sorusunu yanıtla.`;
 
@@ -134,4 +142,7 @@ Lütfen bu kurallara uygun olarak kullanıcının sorusunu yanıtla.`;
     
     return age;
   }
-} 
+}
+
+
+
