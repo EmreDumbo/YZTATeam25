@@ -20,7 +20,7 @@ async function bootstrap() {
   // API prefix
   app.setGlobalPrefix('api');
 
-  await app.listen(process.env.PORT ?? 3001);
-  console.log('🚀 PharmAI Backend running on http://localhost:3001');
+  await app.listen(process.env.PORT ?? 4000);
+  console.log('🚀 PharmAI Backend running on http://localhost:4000');
 }
 bootstrap();
