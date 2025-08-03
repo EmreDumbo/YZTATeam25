@@ -25,6 +25,8 @@ Proje, **ilaç prospektüslerindeki uzun, karmaşık metinleri herkesin anlayabi
 
 > *“Sağlık okuryazarlığını artırarak, ilaç kullanımını güvenli ve bilinçli hâle getiren, yapay zekâ destekli interaktif bir sağlık asistanı oluşturmak.”*
 
+## Ürün Tanıtım Videosu
+
 
 ## 🎯 Hedef Kitle  
 - **Hastalar:** Kullandıkları ilaçlar arasında etkileşim olup olmadığını öğrenmek, yan etkileri anlamak ve güvenli kullanım için bilgi almak isteyen bireyler.
@@ -396,6 +398,10 @@ Genel olarak, Sprint 3’te işler planlı şekilde ilerlemiş; ancak son aşama
 
 → Demo/test ve son teslim dosyaları hazırlandı.
 
+### → Gerçekleştirilen Daily Scrum’dan kısa notlar (kim ne yaptı, ne engel var, ne planlandı) aşağıdaki excel dosyasında bulunmaktadır.
+
+[Sprint3_Daily_Scrum_.xlsx](https://github.com/user-attachments/files/21567044/Sprint3_Daily_Scrum_.xlsx)
+
 
 ### **Sprint 3 USER STORY’LERİ**
 
@@ -439,6 +445,50 @@ Genel olarak, Sprint 3’te işler planlı şekilde ilerlemiş; ancak son aşama
 - Ürünün çalışan, deploy edilmiş versiyonu teslim edilmeli.
 - Kod, dökümantasyon, demo videosu ve teslim formu eksiksiz tamamlanmalı.
 - Github repoda tüm kaynaklar güncel olmalı, 1 dakikalık demo videosu ve canlı link/form eklenmeli.
+
+## Sprint 3 Review 
+#### Sprint 3’te ekip olarak planlanan ana hedeflerin büyük bölümünü başarıyla tamamladık:
+
+- Kullanıcı profil ve sağlık bilgisi modülü geliştirildi.
+
+- Chatbot, kişiselleştirilmiş ve context-aware olarak çalışıyor.
+
+- Yan etki, etkileşim ve dozaj pipeline’ı finalize edildi, Türkçe sözlük güncellendi.
+
+- Sık Sorulan Sorular (FAQ) sayfası ve hata yönetimi tamamlandı.
+
+- Demo, test ve teslimat işlemleri eksiksiz gerçekleştirildi.
+
+#### Eksik kalan tek önemli madde:
+
+Firestore/Supabase ile bulut veritabanı entegrasyonu sprint sonuna kadar tamamlanamadı; kayıt işlemleri lokal veritabanı ile sınırlandı.
+
+Sprint sonunda toplam 100 story point’in 85’i tamamlandı, 15 puanlık iş sonraki geliştirme planına bırakıldı.
+
+## Sprint 3 Retrospective 
+#### Neler iyi gitti?
+
+-Ekip içi iletişim ve görev paylaşımı güçlüydü.
+
+-Chatbot ve pipeline modülleri başarılı şekilde çalıştı.
+
+-FAQ ve hata yönetimi ile kullanıcı deneyimi arttı.
+
+-Teslimat ve demo süreci planlandığı gibi yürütüldü.
+
+#### Neler geliştirilebilirdi?
+
+-Bulut veritabanı entegrasyonunun zamanında tamamlanabilmesi için teknik engeller daha erken ele alınmalıydı.
+
+-Teknik risklerin sprint başında daha net belirlenmesi, önceliklendirme için faydalı olabilirdi.
+
+#### Kapanış Notu:
+Genel olarak, ekip olarak güçlü bir iş birliği ve teknik kapasite sergilendi. Eksik kalan veritabanı entegrasyonu ise ileriki bakım fazına bırakıldı.
+
+
+
+
+
   </details>
 
 ##  📌 Notlar
