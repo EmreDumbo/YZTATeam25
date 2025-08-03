@@ -53,27 +53,40 @@ export default function ChatPage() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/agent/chat', {
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:4000/api/chat/message', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
-        body: JSON.stringify({ messages: history })
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ 
+          message: input.trim(),
+          context: JSON.stringify(messages.slice(-5)) // Son 5 mesajı context olarak gönder
+        })
       });
-      const { reply } = await res.json();
-      setMessages(msgs => [...msgs, { role: 'assistant', content: reply }]);
-    } catch {
-      setMessages(msgs => [...msgs, { role: 'assistant', content: 'I encountered an issue processing your request. Please try again.' }]);
+      
+      if (!res.ok) {
+        throw new Error('API request failed');
+      }
+      
+      const data = await res.json();
+      setMessages(msgs => [...msgs, { role: 'assistant', content: data.response }]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages(msgs => [...msgs, { role: 'assistant', content: 'Üzgünüm, şu anda yanıt veremiyorum. Lütfen daha sonra tekrar deneyin.' }]);
     } finally {
       setLoading(false);
     }
   };
 
   const quickActions = [
-    { icon: '🔍', text: 'Drug Interaction Check', query: 'Check drug interactions between warfarin and aspirin - critical bleeding risk' },
-    { icon: '📊', text: 'Dosage Calculator', query: 'What is the correct dosage for metformin in diabetic patients?' },
-    { icon: '⚗️', text: 'Drug Information', query: 'Tell me about sertraline - uses, side effects, and warnings' },
-    { icon: '📋', text: 'Safety Guidelines', query: 'What are the safety guidelines for tramadol and controlled substances?' },
-    { icon: '🩺', text: 'Clinical Usage', query: 'How should amlodipine be used for hypertension management?' },
-    { icon: '💊', text: 'Medication Review', query: 'Compare different blood pressure medications - ACE inhibitors vs ARBs' }
+    { icon: '🔍', text: 'İlaç Etkileşimi', query: 'Parol ile Nurofen\'i birlikte kullanabilir miyim?' },
+    { icon: '📊', text: 'Dozaj Hesaplayıcı', query: 'Kilo ve boyuma göre dozaj önerisi verir misin?' },
+    { icon: '💊', text: 'İlaç Bilgisi', query: 'Arveles\'in yan etkileri nelerdir?' },
+    { icon: '📋', text: 'Güvenlik Kuralları', query: 'Astımım var, hangi ilaçları kullanmamalıyım?' },
+    { icon: '🩺', text: 'Klinik Kullanım', query: 'Augmentin antibiyotiği nasıl kullanılır?' },
+    { icon: '💊', text: 'İlaç Karşılaştırması', query: 'Ventolin ile diğer astım ilaçları arasındaki fark nedir?' }
   ];
 
   useEffect(() => {
@@ -94,6 +107,31 @@ export default function ChatPage() {
       <div className="relative z-10 max-w-5xl mx-auto px-4 py-6">
         {!isStarted ? (
           <div className="flex flex-col items-center justify-center min-h-screen text-center space-y-6 pb-40">
+            {/* Header with Profile Button */}
+            <div className="absolute top-6 right-6 flex items-center space-x-4">
+              {user && (
+                <span className="text-sm text-emerald-700 bg-emerald-50 px-3 py-2 rounded-full border border-emerald-200 hover:bg-emerald-100 hover:border-emerald-300 transition-all duration-200">
+                  Hoş geldin, {user.firstName}!
+                </span>
+              )}
+              <button
+                onClick={() => router.push('/profile')}
+                className="px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full text-sm transition-all duration-200 hover:shadow-md hover:scale-105"
+              >
+                👤 Profil
+              </button>
+              <button
+                onClick={() => {
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('user');
+                  router.push('/');
+                }}
+                className="px-4 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-full text-sm transition-all duration-200 hover:shadow-md hover:scale-105"
+              >
+                Çıkış Yap
+              </button>
+            </div>
+
             <div className="relative">
               <div className="w-20 h-20 bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 rounded-3xl flex items-center justify-center shadow-2xl shadow-emerald-500/25 hover:shadow-3xl hover:shadow-emerald-500/40 hover:scale-105 transition-all duration-300">
                 <span className="text-3xl">🔬</span>
@@ -106,21 +144,21 @@ export default function ChatPage() {
                 PharmAI
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl">
-                Your comprehensive pharmacy assistant with access to <span className="font-bold text-emerald-600">100+ medications</span> from FDA databases. Get instant answers on drug interactions, dosages, and clinical guidelines.
+                Türkiye'nin en kapsamlı eczane asistanı. <span className="font-bold text-emerald-600">100+ ilaç</span> hakkında anında bilgi alın. İlaç etkileşimleri, dozajlar ve klinik rehberler.
               </p>
               
               <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 max-w-3xl hover:bg-emerald-100 hover:border-emerald-300 transition-all duration-300">
                 <div className="text-sm text-emerald-800">
-                  <div className="font-semibold mb-2">🗄️ Comprehensive Database Includes:</div>
+                  <div className="font-semibold mb-2">🗄️ Kapsamlı Veritabanı İçerir:</div>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
-                    <div>• Pain Relievers</div>
-                    <div>• Antibiotics</div>
-                    <div>• Heart Medications</div>
-                    <div>• Diabetes Drugs</div>
-                    <div>• Mental Health</div>
-                    <div>• Respiratory</div>
-                    <div>• Hormones</div>
-                    <div>• And Many More!</div>
+                    <div>• Ağrı Kesiciler</div>
+                    <div>• Antibiyotikler</div>
+                    <div>• Kalp İlaçları</div>
+                    <div>• Diyabet İlaçları</div>
+                    <div>• Ruh Sağlığı</div>
+                    <div>• Solunum</div>
+                    <div>• Hormonlar</div>
+                    <div>• Ve Daha Fazlası!</div>
                   </div>
                 </div>
               </div>
@@ -147,12 +185,12 @@ export default function ChatPage() {
             </div>
 
             <div className="mt-6 text-center">
-              <div className="text-sm text-gray-500 mb-2">Try asking about specific medications:</div>
+              <div className="text-sm text-gray-500 mb-2">Belirli ilaçlar hakkında soru sorun:</div>
               <div className="flex flex-wrap justify-center gap-2">
-                {['Metformin', 'Lisinopril', 'Atorvastatin', 'Sertraline', 'Albuterol', 'Omeprazole'].map((drug) => (
+                {['Parol', 'Arveles', 'Augmentin', 'Ventolin', 'Nurofen', 'Omeprazol'].map((drug) => (
                   <button
                     key={drug}
-                    onClick={() => setInput(`Tell me about ${drug} - dosage, uses, and side effects`)}
+                    onClick={() => setInput(`${drug} hakkında bilgi ver - dozaj, kullanım ve yan etkiler`)}
                     className="px-3 py-1 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 rounded-full text-xs transition-all duration-200 hover:scale-110 hover:shadow-md"
                   >
                     {drug}
@@ -168,9 +206,9 @@ export default function ChatPage() {
                 <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300">
                   <span className="text-white text-sm">🔬</span>
                 </div>
-                <span className="text-emerald-700 font-medium">PharmAI Assistant</span>
+                <span className="text-emerald-700 font-medium">PharmAI Asistan</span>
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-xs text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full hover:bg-emerald-200 transition-colors duration-200">100+ Drugs</span>
+                <span className="text-xs text-emerald-600 bg-emerald-100 px-2 py-1 rounded-full hover:bg-emerald-200 transition-colors duration-200">100+ İlaç</span>
               </div>
 
               <div className="flex items-center space-x-3">
@@ -179,6 +217,12 @@ export default function ChatPage() {
                     Hoş geldin, {user.firstName}!
                   </span>
                 )}
+                <button
+                  onClick={() => router.push('/profile')}
+                  className="px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-full text-sm transition-all duration-200 hover:shadow-md hover:scale-105"
+                >
+                  👤 Profil
+                </button>
                 <button
                   onClick={() => {
                     localStorage.removeItem('token');
@@ -227,7 +271,7 @@ export default function ChatPage() {
                           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
                           <div className="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                         </div>
-                        <span className="text-sm text-gray-600">PharmAI is analyzing comprehensive database...</span>
+                        <span className="text-sm text-gray-600">PharmAI kapsamlı veritabanını analiz ediyor...</span>
                       </div>
                     </div>
                   </div>
@@ -254,7 +298,7 @@ export default function ChatPage() {
                         sendMessage();
                       }
                     }}
-                    placeholder="Ask about any of 100+ medications: dosages, interactions, side effects, clinical guidelines..."
+                    placeholder="100+ ilaç hakkında soru sorun: dozajlar, etkileşimler, yan etkiler, klinik rehberler..."
                     className="w-full h-full px-4 py-3 bg-transparent border-none resize-none focus:outline-none text-gray-800 placeholder-gray-500"
                     disabled={loading}
                     rows={1}

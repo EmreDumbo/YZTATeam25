@@ -6,6 +6,7 @@ import * as bcrypt from 'bcryptjs';
 import { User } from './user.entity';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { UpdateProfileDto } from './dto/profile.dto';
 
 @Injectable()
 export class AuthService {
@@ -94,6 +95,20 @@ export class AuthService {
     }
 
     const { password, ...userWithoutPassword } = user;
+    return userWithoutPassword;
+  }
+
+  async updateProfile(userId: number, updateProfileDto: UpdateProfileDto): Promise<Partial<User>> {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+
+    // Update user profile
+    Object.assign(user, updateProfileDto);
+    const updatedUser = await this.userRepository.save(user);
+
+    const { password, ...userWithoutPassword } = updatedUser;
     return userWithoutPassword;
   }
 } 
